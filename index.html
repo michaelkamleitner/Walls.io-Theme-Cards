@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html class="main_controller index_action desktop" lang="de-de">
+  <head>
+    <meta charset="utf-8" />
+    <title>Walls.io - Cards Theme</title>
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimal-ui" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta property="og:url" content="https://dev.diesocialisten.at/subnet/cards" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Walls.io - Cards Theme" />
+    <meta property="og:description" content="This new Google-inspired Walls.io Theme demos the use of the brandnew Walls.io API &amp; JavaScript SDK" />
+    <meta property="og:image" content="" />
+    <meta property="og:site_name" content="Walls.io" />
+    <meta property="og:locale" content="de_DE" />
+
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700&subset=latin,cyrillic-ext,vietnamese,latin-ext,cyrillic,greek-ext,greek' rel='stylesheet' type='text/css'>
+
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/jquery.tmpl.min.js"></script>
+    <script src="js/jquery.timeago.js"></script>
+    <script src="js/wallstream.js"></script>
+    <script src="js/emoji.js"></script>
+    <script src="js/masonry.js"></script>
+    <script src="js/main.js"></script>
+  </head>
+
+  <body>
+
+    <div id="container"></div>
+    <div class="grid-sizer"></div>
+
+    <script id="checkin-container-template" type="text/x-jquery-tmpl">
+      <div id="checkin_wrapper_${id}" class="socialwall_checkin_wrapper">
+        <div id="checkin_${id}" class="socialwall_checkin ${type} ${color}" data-id="${id}" data-tags="${tags}">
+        </div>
+      </div>
+    </script>
+    <script id="checkin-image-template" type="text/x-jquery-tmpl">
+
+        <div class="socialwall_image_container">
+          <div class="socialwall_image" id="post_image_${id}" style="background-image:url(${image});"></div>
+          <div class="socialwall_image_bottom"></div>
+        </div>
+
+        {{if message}}
+        <div class="socialwall_message">
+          <p>{{html message}}</p>
+        </div>
+        {{/if}}
+
+    </script>
+    <script id="checkin-message-template" type="text/x-jquery-tmpl">
+      <div class="socialwall_message">
+        <p>{{html message}}</p>
+      </div>
+    </script>
+    <script id="checkin-type-template" type="text/x-jquery-tmpl">
+    </script>
+    <script id="checkin-user-template" type="text/x-jquery-tmpl">
+      <div class="sociawall_separator clearfix"></div>
+      <div class="socialwall_user clearfix">
+        {{if type === "twitter"}}
+          <a href="https://www.twitter.com/${userHandle}" target="_blank">
+            <img src="${image}">
+          </a>
+          <div class="socialwall_name">
+            <a href="https://www.twitter.com/${userHandle}" target="_blank">${userName}</a>
+          </div>
+        {{else type === "facebook"}}
+          <a href="https://www.facebook.com/${userId}" target="_blank">
+            <img src="${image}">
+          </a>
+          <div class="socialwall_name">
+            <a href="https://www.facebook.com/${userId}" target="_blank">${userHandle}</a>
+          </div>
+        {{else type === "appdotnet"}}
+          <a href="https://alpha.app.net/${userHandle}" target="_blank">
+            <img src="${image}">
+          </a>
+          <div class="socialwall_name">
+            <a href="https://alpha.app.net/${userHandle}" target="_blank">${userHandle}</a>
+          </div>
+        {{else type === "googleplus"}}
+          <a href="http://plus.google.com/${userId}" target="_blank">
+            <img src="${image}">
+          </a>
+          <div class="socialwall_name">
+            <a href="http://plus.google.com/${userId}" target="_blank">${userHandle}</a>
+          </div>
+        {{else type === "instagram"}}
+          <a href="http://www.instagram.com/${userHandle}" target="_blank">
+            <img src="${image}">
+          </a>
+          <h3 class="socialwall_name">
+            <a href="http://www.instagram.com/${userHandle}" target="_blank">${userHandle}</a>
+          </h3>
+        {{else}}
+          {{if image}}
+            <img src="${image}">
+          {{/if}}
+
+          <h3 class="socialwall_name">
+            ${userHandle}
+          </h3>
+        {{/if}}
+
+        <div class="socialwall_timestamp">
+          {{if type === "twitter"}}
+          <a href="https://www.twitter.com/${userHandle}/status/${postId}" title="${createdTimestamp}" target="_blank">${createdTimestamp}</a>
+          {{else type === "facebook"}}
+          <a href="${postLink}" title="${createdTimestamp}" target="_blank">${createdTimestamp}</a>
+          {{else postLink}}
+          <a href="${postLink}" title="${createdTimestamp}" target="_blank">${createdTimestamp}</a>
+          {{else}}
+          <span title="${createdTimestamp}">${createdTimestamp}</span>
+          {{/if}}
+        </div>
+        <div class="socialwall_type">
+          ${type} <img src="https://walls.io/img/icon_${type}.png"></img>
+        </div>
+      </div>
+    </script>
+  </body>
+</html>
