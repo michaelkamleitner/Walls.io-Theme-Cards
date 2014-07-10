@@ -282,6 +282,7 @@ a {
   width: 90px;
   text-transform:capitalize;
   text-overflow: ellipsis;
+  text-align: center;
 }
 
 .socialwall_type img {

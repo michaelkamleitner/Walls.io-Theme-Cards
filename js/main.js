@@ -98,7 +98,6 @@ $( document ).ready(function() {
     initialLimit: 1,
     interval: 2000,
     onPost: function(post) {
-      console.log(post);
       //if (count < 1) {
         $checkin = createCheckin(post);
         prependCheckins("#container", $checkin);
